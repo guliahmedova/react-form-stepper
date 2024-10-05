@@ -8,6 +8,8 @@ const Account = () => {
           <div className="mb-4">
             <input
               type="text"
+              autoComplete="false"
+              autoCorrect="false"
               placeholder="Name"
               {...field}
               className="w-full p-4 text-lg border border-gray-600 rounded-md outline-none focus:border-red-600"
@@ -26,6 +28,7 @@ const Account = () => {
           <div className="mb-4">
             <input
               type="text"
+              autoComplete="false"
               placeholder="Surname"
               {...field}
               className="w-full p-4 text-lg border border-gray-600 rounded-md outline-none focus:border-red-600"

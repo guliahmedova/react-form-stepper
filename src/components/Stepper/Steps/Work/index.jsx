@@ -8,6 +8,7 @@ const Work = () => {
           <div className="mb-4">
             <input
               type="email"
+              autoComplete="false"
               placeholder="Email"
               {...field}
               className="w-full p-4 text-lg border border-gray-600 rounded-md outline-none focus:border-red-600"
@@ -26,6 +27,7 @@ const Work = () => {
           <div className="mb-4">
             <input
               type="tel"
+              autoComplete="false"
               placeholder="Phone Number"
               {...field}
               className="w-full p-4 text-lg border border-gray-600 rounded-md outline-none focus:border-red-600"

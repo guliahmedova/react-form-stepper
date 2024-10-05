@@ -7,6 +7,7 @@ const Personal = () => {
         {({ field, meta }) => (
           <div className="mb-4">
             <input
+              autoComplete="false"
               type="date"
               {...field}
               className="w-full p-4 text-lg border border-gray-600 rounded-md outline-none focus:border-red-600"

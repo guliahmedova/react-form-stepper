@@ -23,7 +23,7 @@ const Stepper = ({ currentStep, steps }) => {
       </div>
       {index !== steps.length - 1 && (
         <div
-          className={`flex-auto border-4 border-red-600 ${
+          className={`flex-auto border-4 ${
             index + 1 < currentStep ? "border-green-600" : "border-red-600"
           }`}
         ></div>

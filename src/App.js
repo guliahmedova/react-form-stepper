@@ -1,16 +1,14 @@
-import { useEffect, useState } from 'react';
+import { Form, Formik } from 'formik';
+import { useState } from 'react';
 import logo from './assets/imgs/logo.svg';
 import Stepper from './components/Stepper';
 import { About, Account, Personal, Work } from './components/Stepper/Steps';
-import { Form, Formik } from 'formik';
 import { validate } from './utils/validate';
 
 const steps = ["Account", "Personal", "Work", "About"];
 
 const App = () => {
   const [currentStep, setCurrentStep] = useState(1);
-  const [btnDisabled, setBtnDisabled] = useState(true);
-
   const displayStep = (step) => {
     switch (step) {
       case 1:
@@ -24,11 +22,14 @@ const App = () => {
     }
   }
 
-  const handleNextBtn = (formik) => {
-    if (currentStep < steps.length) {
+  const handleNextBtn = async (formik) => {
+    const errors = await formik.validateForm();
+    console.log(errors);
+    if (errors.isValid && currentStep < steps.length) {
       setCurrentStep(prevState => prevState + 1);
-    } else if ((currentStep === steps.length) && (formik.isValid && formik.dirty)) {
-      console.log(formik.values);
+    }
+    else if (currentStep === steps.length && formik.isValid && formik.dirty) {
+      setCurrentStep(1);
       formik.resetForm();
     }
   }
@@ -56,7 +57,8 @@ const App = () => {
           }}
             validateOnBlur={true}
             validateOnChange={true}
-            validate={validate}
+            validate={(values) => validate(values, currentStep)}
+            validateOnMount={true}
           // onSubmit={(values) => console.log(values)}
           >
             {
@@ -72,10 +74,10 @@ const App = () => {
                         Previous
                       </button>
                     )}
-                    <button className="rounded-md bg-red-600 py-3 text-lg px-4 text-center text-white font-semibold w-full"
+                    <button className="rounded-md bg-red-600 py-3 text-lg px-4 text-center text-white font-semibold w-full disabled:opacity-50"
                       onClick={() => handleNextBtn(formik)}
                       type='button'
-                    // disabled={formik.resetForm}
+                      disabled={!formik.errors.isValid}
                     >
                       {currentStep === steps.length ? "Submit" : "Next"}
                     </button>
