@@ -59,7 +59,6 @@ const App = () => {
             validateOnChange={true}
             validate={(values) => validate(values, currentStep)}
             validateOnMount={true}
-          // onSubmit={(values) => console.log(values)}
           >
             {
               (formik) => (
